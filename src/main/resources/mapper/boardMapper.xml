@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.board.example.dao.boardMapper">
+
+    <insert id="insertBoard" parameterType="com.board.example.dto.BoardDto">
+        INSERT INTO board(title, content, writer, password, regpe_id, modpe_id, mod_dts) VALUES (#{title}, #{content}, #{writer}, #{password}, #{regpeId}, #{modpeId}, now())
+    </insert>
+
+</mapper>
