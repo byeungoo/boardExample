@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 작성 페이지</title>
+</head>
+<body>
+
+<form id="dataForm" method="post" action="/board">
+    <table>
+        <caption>게시판 글작성</caption>
+        <tr>
+            <td>작성자</td>
+            <td><input type="text" name="writer" size=10 maxlength=8></td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td><input type="password" name="password" size=15 maxlength=15></td>
+        </tr>
+        <tr>
+            <td>제 목</td>
+            <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <td>내 용</td>
+            <td><textarea name="content" rows="10" cols="100"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div align="center">
+                    <input type="submit" value="등록">
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
