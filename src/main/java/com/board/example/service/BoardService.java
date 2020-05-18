@@ -23,12 +23,12 @@ public class BoardService {
         boardDao.insertBoard(board);
 
         /*
-        board.setId(14L);
+        board.setId(50L);
         BoardDto test = boardDao.getBoard(board);
         test.getContent();
         */
 
-        result.put("resltMsg", "게시글이 등록되었습니다.");
+        result.put("resultMsg", "게시글이 등록되었습니다.");
         result.put("resultCode", "success");
 
         return result;
