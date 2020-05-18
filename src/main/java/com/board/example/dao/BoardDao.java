@@ -17,4 +17,7 @@ public class BoardDao {
         sqlSession.insert(NAMESPACE + "insertBoard", board);
     }
 
+    public BoardDto getBoard(BoardDto board) {
+        return sqlSession.selectOne(NAMESPACE + "getBoard", board);
+    }
 }

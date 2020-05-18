@@ -20,43 +20,27 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-    @GetMapping(value="/")
-    public String index(){
-        return "index";
-    }
-
-    @GetMapping(value="/test")
-    public String insertBoard(){
-        BoardDto board = new BoardDto();
-        board.setTitle("테스트");
-        board.setPassword("123");
-        board.setWriter("훈");
-        board.setContent("내용이다");
-        board.setModpeId("hoon");
-        board.setRegpeId("hoon");
-        boardService.insertBoard(board);
-
-        return "index";
-    }
-
-    @GetMapping(value="/")
+    @GetMapping
     public String goBoardPage(){
 
         return "board";
     }
 
-    @PostMapping(value="/")
-    public @ResponseBody Map<String, BoardDto> insertBoard(@RequestBody BoardDto boardDto){
+    @PostMapping
+    public @ResponseBody Map<String, Object> insertBoard(BoardDto boardDto){
 
-        Map<String, BoardDto> map = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
 
         try{
-
+            boardDto.setModpeId("hoon");
+            boardDto.setRegpeId("hoon");
+            result = boardService.insertBoard(boardDto);
         } catch(Exception e) {
-
+            e.printStackTrace();
+            throw new RuntimeException("게시글 등록에 실패하였습니다.");
         }
 
-        return map;
+        return result;
     }
 
 }

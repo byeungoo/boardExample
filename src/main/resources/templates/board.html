@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판 작성 페이지</title>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script th:src="@{/js/board.js}"></script>
 </head>
 <body>
 
-<form id="dataForm" method="post" action="/board">
+<form id="dataForm" method="post">
     <table>
         <caption>게시판 글작성</caption>
         <tr>
             <td>작성자</td>
-            <td><input type="text" name="writer" size=10 maxlength=8></td>
+            <td><input type="text" id="writer" name="writer" size=10 maxlength=8></td>
         </tr>
         <tr>
             <td>비밀번호</td>
-            <td><input type="password" name="password" size=15 maxlength=15></td>
+            <td><input type="password" id="password" name="password" size=15 maxlength=15></td>
         </tr>
         <tr>
             <td>제 목</td>
-            <td><input type="text" name="title"></td>
+            <td><input type="text" id="title" name="title"></td>
         </tr>
         <tr>
             <td>내 용</td>
-            <td><textarea name="content" rows="10" cols="100"></textarea></td>
+            <td><textarea id="content" name="content" rows="10" cols="100"></textarea></td>
         </tr>
         <tr>
             <td colspan="2">
                 <div align="center">
-                    <input type="submit" value="등록">
+                    <button type="button" onclick="saveBoard()" name="submitBtn">등록</button>
                 </div>
             </td>
         </tr>

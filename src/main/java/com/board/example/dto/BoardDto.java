@@ -1,13 +1,20 @@
 package com.board.example.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @ToString
 public class BoardDto {
+
+    public BoardDto(){
+
+    }
 
     private Long id;
 
