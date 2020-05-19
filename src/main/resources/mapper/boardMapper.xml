@@ -6,16 +6,45 @@
 <mapper namespace="com.board.example.dao.boardMapper">
 
     <insert id="insertBoard" parameterType="com.board.example.dto.BoardDto">
-        INSERT INTO board(title, content, writer, password, regpe_id, modpe_id, mod_dts) VALUES (#{title}, #{content}, #{writer}, #{password}, #{regpeId}, #{modpeId}, now())
+        INSERT INTO board(title, content, writer, views, regpe_id, modpe_id, mod_dts)
+        VALUES (#{title}, #{content}, #{writer}, #{views}, #{regpeId}, #{modpeId}, now())
     </insert>
 
     <select id="getBoard" parameterType="com.board.example.dto.BoardDto" resultType="com.board.example.dto.BoardDto">
-        SELECT  title
-              , content
-              , writer
+        SELECT  *
         FROM    board
         WHERE   1 = 1
         AND     id = #{id}
     </select>
+
+    <update id="updateBoard" parameterType="com.board.example.dto.BoardDto">
+        UPDATE  board
+        SET     title   = #{title}
+              , content = #{content}
+              , modpe_id = #{modpeId}
+        WHERE   1 = 1
+        AND     id = #{id}
+    </update>
+
+    <delete id="deleteBoard" parameterType="com.board.example.dto.BoardDto">
+        DELETE  board
+        WHERE   id = #{id}
+    </delete>
+
+    <select id="getBoardList" parameterType="com.board.example.dto.BoardDto" resultType="com.board.example.dto.BoardDto">
+        SELECT  *
+        FROM    board
+        WHERE   1 = 1
+        ORDER BY id DESC
+        LIMIT #{startRnum}, #{endRnum}
+    </select>
+
+    <update id="increaseView" parameterType="com.board.example.dto.BoardDto">
+        UPDATE  board
+        SET     views = #{views} + 1
+              , modpe_id = #{modpeId}
+        WHERE   1 = 1
+        AND     id = #{id}
+    </update>
 
 </mapper>

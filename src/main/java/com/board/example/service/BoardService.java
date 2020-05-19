@@ -6,32 +6,56 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @Service
-public class BoardService {
+@Transactional
+public class BoardService implements IBoardService{
+
+    private final BoardDao boardDao;
 
     @Autowired
-    BoardDao boardDao;
+    public BoardService(BoardDao boardDao){
+        this.boardDao = boardDao;
+    }
 
-    @Transactional
-    public Map<String, Object> insertBoard (BoardDto board) throws Exception{
-
-        Map<String, Object> result = new HashMap<>();
-
+    public void insertBoard (BoardDto board) throws RuntimeException{
         boardDao.insertBoard(board);
+        //throw new RuntimeException();
+    }
 
-        /*
-        board.setId(50L);
-        BoardDto test = boardDao.getBoard(board);
-        test.getContent();
-        */
+    public void updateBoard(BoardDto boardDto) throws RuntimeException{
+        boardDao.updateBoard(boardDto);
+    }
 
-        result.put("resultMsg", "게시글이 등록되었습니다.");
-        result.put("resultCode", "success");
+    public void deleteBoard(BoardDto boardDto) throws RuntimeException{
+        boardDao.deleteBoard(boardDto);
+    }
 
+    public BoardDto getBoard(BoardDto boardDto) throws RuntimeException{
+        BoardDto result = boardDao.getBoard(boardDto);
         return result;
+    }
+
+    public List<BoardDto> getBoardList(BoardDto boardDto) throws  RuntimeException{
+        List<BoardDto> resultList = boardDao.getBoardList(boardDto);
+        return resultList;
+    }
+
+    public void increaseView(BoardDto boardDto){
+        boardDao.increaseView(boardDto);
+    }
+
+    public void insertMassTestBoard(BoardDto boardDto){
+
+        String title = boardDto.getTitle();
+
+        for(int i=0; i<=100;i++){
+            boardDto.setTitle(title+i);
+            this.insertBoard(boardDto);
+        }
+
+        throw new RuntimeException();
     }
 
 }
