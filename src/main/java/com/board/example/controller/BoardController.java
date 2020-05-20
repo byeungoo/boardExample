@@ -134,6 +134,8 @@ public class BoardController {
 
         try {
             boardService.deleteBoard(boardDto);
+            result.put("resultMsg", "게시글 삭제가 완료되었습니다.");
+            result.put("resultCode", "success");
         } catch(RuntimeException e){
             result.put("resultMsg", "게시글 삭제에 실패하였습니다.");
             result.put("resultCode", "fail");

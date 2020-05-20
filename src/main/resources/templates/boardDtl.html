@@ -8,7 +8,33 @@
 </head>
 <body>
 
+<form id="dataForm">
+    <table>
 
+        <input type="hidden" id="boardId" th:value="${board.id}"/>
 
+        <caption>게시판 글작성</caption>
+        <tr>
+            <td>작성자</td>
+            <td th:text="${board.writer}"></td>
+        </tr>
+        <tr>
+            <td>제 목</td>
+            <td><input type="text" id="title" name="title" style="width:720px" th:value="${board.title}"></td>
+        </tr>
+        <tr>
+            <td>내 용</td>
+            <td><textarea id="content" name="content" rows="10" cols="100" th:text="${board.content}"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div align="center">
+                    <button type="button" onclick="updateBoard()" name="submitBtn">수정하기</button>
+                    <button type="button" onclick="deleteBoard()" name="submitBtn">삭제하기</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
