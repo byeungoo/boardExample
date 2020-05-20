@@ -27,8 +27,8 @@
     </update>
 
     <delete id="deleteBoard" parameterType="com.board.example.dto.BoardDto">
-        DELETE  board
-        WHERE   id = #{id}
+        DELETE FROM board
+        WHERE  id = #{id}
     </delete>
 
     <select id="getBoardList" parameterType="com.board.example.dto.BoardDto" resultType="com.board.example.dto.BoardDto">

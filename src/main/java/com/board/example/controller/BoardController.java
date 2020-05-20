@@ -106,7 +106,7 @@ public class BoardController {
     }
 
     @PutMapping(value="/{id}")
-    public @ResponseBody Map<String, Object> updateBoard(BoardDto boardDto){
+    public @ResponseBody Map<String, Object> updateBoard(@RequestBody BoardDto boardDto){
 
         Map<String, Object> result = new HashMap<>();
 
@@ -128,7 +128,7 @@ public class BoardController {
     }
 
     @DeleteMapping(value="/{id}")
-    public @ResponseBody Map<String, Object> deleteBoard(BoardDto boardDto){
+    public @ResponseBody Map<String, Object> deleteBoard(@RequestBody BoardDto boardDto){
 
         Map<String, Object> result = new HashMap<>();
 

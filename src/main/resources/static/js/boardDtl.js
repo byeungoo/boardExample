@@ -1,13 +1,13 @@
 function updateBoard(){
     var id = $("#boardId").val();
-    var boardData = JSON.stringify(getBoardData());
+    var boardData = getBoardData();
     var url = "/board/" + id;
 
     $.ajax({
           url : url
         , type : 'put'
         , contentType: 'application/json; charset=utf-8'
-        , data : boardData
+        , data : JSON.stringify(boardData)
         , dataType:'json'
         , cache : false
         , success : function(result){
