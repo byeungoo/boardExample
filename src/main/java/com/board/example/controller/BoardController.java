@@ -39,7 +39,6 @@ public class BoardController {
         Map<String, Object> result = new HashMap<>();
 
         try{
-
             boardDto.setModpeId("hoon");
             boardDto.setRegpeId("hoon");
             boardService.insertBoard(boardDto);
@@ -88,6 +87,7 @@ public class BoardController {
             model.addAttribute("pageMaker", pageMaker);
 
             List<BoardDto> boardDtoList = boardService.getBoardList(criteria);
+
             model.addAttribute("boardList", boardDtoList);
         } catch(RuntimeException e){
             e.printStackTrace();

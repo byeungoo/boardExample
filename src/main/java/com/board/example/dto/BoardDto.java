@@ -15,6 +15,6 @@ public class BoardDto extends BaseDto{
 
     private String writer;
 
-    private String views;
+    private int views;
 
 }
