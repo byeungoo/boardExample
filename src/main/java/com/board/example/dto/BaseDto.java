@@ -9,11 +9,6 @@ import java.time.LocalDateTime;
 @Setter
 public class BaseDto {
 
-    public BaseDto(){
-        this.pageNum = 1;
-        this.pageSize = 10;
-    }
-
     private String regpeId;
 
     private String modpeId;
@@ -21,20 +16,5 @@ public class BaseDto {
     private LocalDateTime regDts;
 
     private LocalDateTime modDts;
-
-    private int pageNum;
-
-    private int pageSize;
-
-    private int startRnum;
-
-    private int endRnum;
-
-    private int totalCount;
-
-    public void initPagingParam(){
-        this.startRnum = this.pageSize*(this.pageNum-1);
-        this.endRnum = this.pageSize*this.pageNum;
-    }
 
 }

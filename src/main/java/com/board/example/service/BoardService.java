@@ -1,6 +1,8 @@
 package com.board.example.service;
 
+import com.board.example.commons.Criteria;
 import com.board.example.dao.BoardDao;
+import com.board.example.dao.IBoardDao;
 import com.board.example.dto.BoardDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ import java.util.List;
 @Transactional
 public class BoardService implements IBoardService{
 
-    private final BoardDao boardDao;
+    private final IBoardDao boardDao;
 
     @Autowired
     public BoardService(BoardDao boardDao){
@@ -37,8 +39,8 @@ public class BoardService implements IBoardService{
         return result;
     }
 
-    public List<BoardDto> getBoardList(BoardDto boardDto) throws  RuntimeException{
-        List<BoardDto> resultList = boardDao.getBoardList(boardDto);
+    public List<BoardDto> getBoardList(Criteria criteria) throws  RuntimeException{
+        List<BoardDto> resultList = boardDao.getBoardList(criteria);
         return resultList;
     }
 
@@ -50,12 +52,16 @@ public class BoardService implements IBoardService{
 
         String title = boardDto.getTitle();
 
-        for(int i=0; i<=100;i++){
+        for(int i=0; i<=999;i++){
             boardDto.setTitle(title+i);
             this.insertBoard(boardDto);
         }
 
         throw new RuntimeException();
+    }
+
+    public int getBoardTotalCnt(){
+        return boardDao.getBoardTotalCnt();
     }
 
 }

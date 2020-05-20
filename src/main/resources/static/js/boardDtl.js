@@ -26,18 +26,18 @@ function updateBoard(){
 
 function deleteBoard(){
 
-    var id = $("#boardId").val();
+    var boardData = getBoardData();
 
     $.ajax({
           type : 'delete'
-        , data : JSON.stringify(id)
+        , data : JSON.stringify(boardData)
         , contentType: "application/json; charset=utf-8"
         , dataType:'json'
         , cache : false
         , success : function(result){
             alert(result.resultMsg);
             if(result.resultCode == "success"){
-                window.location.href = '/board/list';
+                window.location.href = '/board/list/1';
             }
         }
         , error : function(jqXHR, textStatus, errorThrown){

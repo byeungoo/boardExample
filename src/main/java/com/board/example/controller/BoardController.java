@@ -1,5 +1,7 @@
 package com.board.example.controller;
 
+import com.board.example.commons.Criteria;
+import com.board.example.commons.PageMaker;
 import com.board.example.dto.BoardDto;
 import com.board.example.service.BoardService;
 import com.board.example.service.IBoardService;
@@ -76,12 +78,16 @@ public class BoardController {
         return result;
     }
 
-    @GetMapping(value = "/list")
-    public String getBoardList(Model model, BoardDto boardDto){
+    @GetMapping(value = "/list/{page}")
+    public String getBoardList(Model model, Criteria criteria){
 
         try{
-            boardDto.initPagingParam();
-            List<BoardDto> boardDtoList = boardService.getBoardList(boardDto);
+            PageMaker pageMaker = new PageMaker(criteria);
+            int totalCnt = boardService.getBoardTotalCnt();
+            pageMaker.setPagingInfo(totalCnt);
+            model.addAttribute("pageMaker", pageMaker);
+
+            List<BoardDto> boardDtoList = boardService.getBoardList(criteria);
             model.addAttribute("boardList", boardDtoList);
         } catch(RuntimeException e){
             e.printStackTrace();

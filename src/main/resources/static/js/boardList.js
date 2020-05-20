@@ -5,3 +5,7 @@ function goBoardWritePage(){
 function goBoardDtl(boardId){
     window.location.href = '/board/' + boardId;
 }
+
+function movePage(page){
+    window.location.href = '/board/list/' + page;
+}

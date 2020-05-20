@@ -36,7 +36,7 @@
         FROM    board
         WHERE   1 = 1
         ORDER BY id DESC
-        LIMIT #{startRnum}, #{endRnum}
+        LIMIT #{pageStart}, #{perPageNum}
     </select>
 
     <update id="increaseView" parameterType="com.board.example.dto.BoardDto">
@@ -46,5 +46,10 @@
         WHERE   1 = 1
         AND     id = #{id}
     </update>
+
+    <select id="getBoardTotalCnt" resultType="int">
+        SELECT  count(*)
+        FROM    board
+    </select>
 
 </mapper>
