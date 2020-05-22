@@ -21,7 +21,7 @@ function saveBoard(){
                 alert(result.resultMsg);
                 $("#submitBtn").prop("disabled", false);
                 if(result.resultCode == "success"){
-                    window.location.href = '/list';
+                    window.location.href = '/board/list/1';
                 }
             },
             error      : function(jqXhr, status, error){
