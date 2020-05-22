@@ -8,6 +8,7 @@ import com.board.example.service.IBoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,7 @@ public class BoardController {
             boardDto.setRegpeId("hoon");
             boardService.insertBoard(boardDto);
 
+            result.put("status", HttpStatus.CREATED);
             result.put("resultMsg", "게시글 작성이 완료되었습니다.");
             result.put("resultCode", "success");
 
@@ -66,6 +68,7 @@ public class BoardController {
             boardDto.setRegpeId("hoon");
             boardService.insertMassTestBoard(boardDto);
 
+            result.put("status", HttpStatus.CREATED);
             result.put("resultMsg", "게시글 작성이 완료되었습니다.");
             result.put("resultCode", "success");
 
@@ -103,6 +106,7 @@ public class BoardController {
             BoardDto resultDto = boardService.getBoard(boardDto);
             resultDto.setModpeId("hoon");
             boardService.increaseView(resultDto);
+
             model.addAttribute("board", resultDto);
         } catch(RuntimeException e){
             e.printStackTrace();
@@ -122,6 +126,7 @@ public class BoardController {
 
             boardService.updateBoard(boardDto);
 
+            result.put("status", HttpStatus.OK);
             result.put("resultMsg", "게시글 수정이 완료되었습니다.");
             result.put("resultCode", "success");
         } catch(RuntimeException e){
@@ -140,6 +145,7 @@ public class BoardController {
 
         try {
             boardService.deleteBoard(boardDto);
+            result.put("status", HttpStatus.OK);
             result.put("resultMsg", "게시글 삭제가 완료되었습니다.");
             result.put("resultCode", "success");
         } catch(RuntimeException e){
