@@ -8,6 +8,9 @@
     <insert id="insertBoard" parameterType="com.board.example.dto.BoardDto">
         INSERT INTO board(title, content, writer, views, regpe_id, modpe_id, mod_dts)
         VALUES (#{title}, #{content}, #{writer}, #{views}, #{regpeId}, #{modpeId}, now())
+        <selectKey keyProperty="id" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <select id="getBoard" parameterType="com.board.example.dto.BoardDto" resultType="com.board.example.dto.BoardDto">
