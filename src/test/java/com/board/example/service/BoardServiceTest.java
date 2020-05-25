@@ -1,5 +1,6 @@
 package com.board.example.service;
 
+import com.board.example.dao.BoardDao;
 import com.board.example.dto.BoardDto;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -13,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @Transactional
 public class BoardServiceTest {
+
+    @Autowired
+    BoardDao boardDao;
 
     @Autowired
     BoardService boardService;
@@ -45,6 +49,7 @@ public class BoardServiceTest {
         Assertions.assertEquals(boardDto.getWriter(), savedBoardDto.getWriter());
     }
 
+    //게시글 업데이트 테스트
     @Test
     public void updateBoardTest(){
         BoardDto boardDto = new BoardDto();
@@ -62,6 +67,21 @@ public class BoardServiceTest {
         BoardDto updatedBoardDto = boardService.getBoard(boardDto);
         Assertions.assertEquals(boardDto.getTitle(), updatedBoardDto.getTitle());
         Assertions.assertEquals(boardDto.getContent(), updatedBoardDto.getContent());
+    }
+
+    //게시글 삭제 테스트
+    @Test
+    public void deleteBoardTest(){
+        BoardDto boardDto = new BoardDto();
+        boardDto.setTitle("제목");
+        boardDto.setWriter("구훈");
+        boardDto.setContent("내용");
+        boardDto.setRegpeId("hoon");
+        boardDto.setModpeId("hoon");
+        boardDao.insertBoard(boardDto);
+        boardService.deleteBoard(boardDto);
+        BoardDto updatedBoardDto = boardDao.getBoard(boardDto);
+        Assertions.assertEquals(null, updatedBoardDto);
     }
 
 }
