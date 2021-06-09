@@ -21,6 +21,7 @@ import java.util.Map;
 @RequestMapping("/board")
 public class BoardController {
 
+    //dev rebase test1
     private final IBoardService boardService;
 
     private static final Logger log = LoggerFactory.getLogger(BoardController.class);
